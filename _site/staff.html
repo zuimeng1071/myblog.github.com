@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>作者信息</title>
+    <link rel="stylesheet" href="/css/head_style.css">
+  </head>
+  <body>
+    <nav>
+  
+    <a href="/">首页</a>
+  
+    <a href="/about.html">关于</a>
+  
+    <a href="/contact.html">联系方式</a>
+  
+    <a href="/blog.html">最新资讯</a>
+  
+    <a href="/staff.html" class="current">作者信息</a>
+  
+</nav>
+    <style>
+  .authors-page {
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .authors-page h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+  }
+
+  .author-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .author-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+  }
+
+  .author-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .author-card a {
+    display: block;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .author-card h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    color: #2c3e50;
+  }
+
+  .author-card h3 {
+    color: #7f8c8d;
+    font-weight: normal;
+    margin-bottom: 1rem;
+  }
+
+  .author-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+  }
+</style>
+
+<div class="authors-page">
+  <h1>作者信息</h1>
+  <ul class="author-list">
+    
+      <li class="author-card">
+        <a href="/authors/%E5%93%88%E5%93%88%E5%93%88.html">
+          <h2>赖家宇</h2>
+          <h3>学生</h3>
+          <p><p>无</p>
+</p>
+        </a>
+      </li>
+    
+      <li class="author-card">
+        <a href="/authors/%E7%8E%AF%E7%90%83%E7%BD%91.html">
+          <h2>环球网</h2>
+          <h3>主编</h3>
+          <p><p>环球网</p>
+</p>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+  </body>
+</html>
+
+<!-- 引入 MathJax 以支持 LaTeX 公式 -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>

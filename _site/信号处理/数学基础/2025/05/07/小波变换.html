@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>小波变换简介</title>
+    <link rel="stylesheet" href="/css/head_style.css">
+  </head>
+  <body>
+    <nav>
+  
+    <a href="/">首页</a>
+  
+    <a href="/about.html">关于</a>
+  
+    <a href="/contact.html">联系方式</a>
+  
+    <a href="/blog.html">最新资讯</a>
+  
+    <a href="/staff.html">作者信息</a>
+  
+</nav>
+    <style>
+  .post-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .post-header h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+
+  .post-meta {
+    font-size: 0.95rem;
+    color: #777;
+    margin-bottom: 2rem;
+  }
+
+  .post-meta a {
+    color: #3498db;
+    text-decoration: none;
+  }
+
+  .post-meta a:hover {
+    text-decoration: underline;
+  }
+
+  .post-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+
+  .post-back-link {
+    display: block;
+    margin: 2rem auto;
+    text-align: center;
+    font-size: 1rem;
+    color: #3498db;
+    text-decoration: none;
+  }
+
+  .post-back-link:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="post-container">
+  <header class="post-header">
+    <h1>小波变换简介</h1>
+    <div class="post-meta">
+      07 May 2025
+      
+      
+        - <a href="/authors/%E5%93%88%E5%93%88%E5%93%88.html">赖家宇</a>
+      
+    </div>
+  </header>
+
+  <div class="post-content">
+    <hr />
+
+<h2 id="-什么是小波变换">📘 什么是小波变换？</h2>
+
+<p>小波变换（<strong>Wavelet Transform</strong>）是一种强大的数学工具，广泛应用于<strong>信号处理、图像压缩、噪声去除、数据分析等领域</strong>。与传统的傅里叶变换不同，小波变换不仅可以分析信号的频率成分，还可以分析这些频率在<strong>时间上的变化情况</strong>，因此特别适用于<strong>非平稳信号</strong>的处理。</p>
+
+<hr />
+
+<h2 id="-小波变换的基本思想">🧮 小波变换的基本思想</h2>
+
+<p>小波变换的核心是使用一个称为“小波”（Wavelet）的基函数来对原始信号进行展开。这个基函数具有两个关键属性：</p>
+
+<ol>
+  <li><strong>有限支撑性</strong>：即它只在一个有限的时间区间内不为零。</li>
+  <li><strong>振荡性</strong>：正负交替，类似波动。</li>
+</ol>
+
+<p>通过伸缩和平移操作，我们可以用一个小波母函数 $ \psi(t) $ 生成一系列子小波：</p>
+
+\[\psi_{a,b}(t) = \frac{1}{\sqrt{|a|}} \psi\left( \frac{t - b}{a} \right)\]
+
+<p>其中：</p>
+<ul>
+  <li>\(a\) 是尺度因子（scale），控制伸缩；</li>
+  <li>\(b\) 是平移因子（translation），控制滑动。</li>
+</ul>
+
+<hr />
+
+<h2 id="-连续小波变换cwt">🔍 连续小波变换（CWT）</h2>
+
+<p>连续小波变换定义如下：</p>
+
+\[W(a, b) = \int_{-\infty}^{\infty} x(t) \cdot \psi_{a,b}^*(t) \, dt\]
+
+<p>其中 \(\psi_{a,b}^*(t)\) 是小波基函数的共轭复数。通过逆变换，原始信号可以从小波系数重构：</p>
+
+\[x(t) = \frac{1}{C_\psi} \int_{0}^{\infty} \int_{-\infty}^{\infty} W(a, b) \cdot \psi_{a,b}(t) \, \frac{db \, da}{a^2}\]
+
+<p>这里 \(C_\psi\) 是小波的<strong>容许常数</strong>，需满足容许条件：</p>
+
+\[C_\psi = \int_{-\infty}^{\infty} \frac{|\Psi(\omega)|^2}{|\omega|} d\omega &lt; \infty\]
+
+<p>其中 \(\Psi(\omega)\) 是小波函数的傅里叶变换。此条件隐含小波必须具有<strong>零均值</strong>：<br />
+\(\int_{-\infty}^{\infty} \psi(t) dt = 0\)</p>
+
+<hr />
+
+<h2 id="-离散小波变换dwt">📏 离散小波变换（DWT）</h2>
+
+<p>离散小波变换是对 CWT 的简化，采用二进制尺度和平移：</p>
+
+\[\psi_{j,k}(t) = 2^{-j/2} \psi(2^{-j} t - k)\]
+
+<p>信号 \(x(t)\) 可分解为不同尺度的近似（低频）和细节（高频）部分：</p>
+
+\[x(t) = \sum_{k} a_{J,k} \phi_{J,k}(t) + \sum_{j=1}^{J} \sum_{k} d_{j,k} \psi_{j,k}(t)\]
+
+<p>其中：</p>
+<ul>
+  <li>\(\phi(t)\) 是<strong>尺度函数</strong>，生成近似系数 \(a_{J,k}\)；</li>
+  <li>\(\psi(t)\) 生成细节系数 $ d_{j,k} $$；</li>
+  <li>\(J\) 为分解层数。</li>
+</ul>
+
+<hr />
+
+<h2 id="-小波变换的应用场景">💡 小波变换的应用场景</h2>
+
+<ul>
+  <li>✅ 图像去噪与压缩（如 JPEG2000）</li>
+  <li>✅ ECG 心电信号分析</li>
+  <li>✅ 地震信号处理</li>
+  <li>✅ 财务数据分析</li>
+  <li>✅ 边缘检测与图像识别</li>
+</ul>
+
+<hr />
+
+<h2 id="-示例代码python">📌 示例代码（Python）</h2>
+
+<p>你可以使用 Python 中的 <code class="language-plaintext highlighter-rouge">PyWavelets</code> 库来进行小波变换：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pywt</span>
+<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># 生成一个测试信号
+</span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">7</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># 使用连续小波变换（CWT）
+</span><span class="n">scales</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+<span class="n">coefficients</span><span class="p">,</span> <span class="n">frequencies</span> <span class="o">=</span> <span class="n">pywt</span><span class="p">.</span><span class="nf">cwt</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">scales</span><span class="p">,</span> <span class="sh">'</span><span class="s">morl</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># 绘制结果
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">coefficients</span><span class="p">),</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">'</span><span class="s">jet</span><span class="sh">'</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="sh">'</span><span class="s">auto</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sh">'</span><span class="s">幅值</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">'</span><span class="s">小波变换时频图</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">'</span><span class="s">尺度</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">'</span><span class="s">时间</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-参考资料">📚 参考资料</h2>
+
+<ul>
+  <li><a href="https://pywavelets.readthedocs.io/">PyWavelets 官方文档</a></li>
+  <li>Daubechies, I. <em>Ten Lectures on Wavelets</em></li>
+  <li>Mallat, S. <em>A Wavelet Tour of Signal Processing</em></li>
+</ul>
+
+<p>📌 <strong>作者说明</strong>：本文由 AI 助手协助完成，旨在帮助初学者理解小波变换的基本概念。欢迎留言讨论或指出错误。</p>
+
+  </div>
+
+  <a href="/blog" class="post-back-link">← 返回博客列表</a>
+</div>
+  </body>
+</html>
+
+<!-- 引入 MathJax 以支持 LaTeX 公式 -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>

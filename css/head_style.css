@@ -1,0 +1,82 @@
+body {
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.8;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 40px 20px;
+    background-color: #f5f7fa;
+    color: #2d3748;
+}
+
+h1 {
+    color: #1a365d;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+}
+
+ul.posts {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 2rem;
+}
+
+ul.posts li {
+    background: #ffffff;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+ul.posts li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.post-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2b6cb0;
+    margin-bottom: 0.5rem;
+}
+
+.post-date {
+    font-size: 0.875rem;
+    color: #718096;
+    margin-bottom: 0.75rem;
+}
+
+.post-excerpt {
+    color: #4a5568;
+    margin-top: 0.75rem;
+}
+
+a {
+    text-decoration: none;
+    color: #3182ce;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #2c5282;
+    text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 640px) {
+    body {
+        padding: 20px 15px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    ul.posts li {
+        padding: 1rem;
+    }
+}
