@@ -1,0 +1,19 @@
+---
+layout: default
+title: 关于
+---
+
+<h1>{{ page.title }}</h1>
+
+<p>这是我的个人网站。</p>
+
+<h2>最新文章</h2>
+<ul class="posts">
+  {% for post in site.posts limit:5 %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+      <br>
+      <small>{{ post.date | date_to_string }}</small>
+    </li>
+  {% endfor %}
+</ul>

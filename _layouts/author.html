@@ -1,0 +1,80 @@
+---
+layout: default
+---
+
+<style>
+  .author-header {
+    text-align: center;
+    padding: 2rem 0;
+    background-color: #f5f7fa;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  .author-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #2c3e50;
+  }
+
+  .author-header h2 {
+    color: #7f8c8d;
+    font-weight: normal;
+    margin-top: 0.5rem;
+  }
+
+  .author-content {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    line-height: 1.8;
+    font-size: 1.1rem;
+  }
+
+  .posts-list {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .posts-list ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .posts-list li {
+    margin-bottom: 1rem;
+  }
+
+  .posts-list a {
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: #3498db;
+  }
+
+  .posts-list a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="author-header">
+  <h1>{{ page.name }}</h1>
+  <h2>{{ page.position }}</h2>
+</div>
+
+<div class="author-content">
+  {{ content }}
+</div>
+
+<h2 class="posts-list-title">发表的文章</h2>
+<div class="posts-list">
+  {% assign filtered_posts = site.posts | where: 'author', page.short_name %}
+  {% if filtered_posts.size > 0 %}
+    <ul>
+      {% for post in filtered_posts %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>暂无文章。</p>
+  {% endif %}
+</div>

@@ -1,0 +1,80 @@
+---
+layout: default
+title: 作者信息
+---
+
+<style>
+  .authors-page {
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .authors-page h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+  }
+
+  .author-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .author-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+  }
+
+  .author-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .author-card a {
+    display: block;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .author-card h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    color: #2c3e50;
+  }
+
+  .author-card h3 {
+    color: #7f8c8d;
+    font-weight: normal;
+    margin-bottom: 1rem;
+  }
+
+  .author-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+  }
+</style>
+
+<div class="authors-page">
+  <h1>作者信息</h1>
+  <ul class="author-list">
+    {% for author in site.authors %}
+      <li class="author-card">
+        <a href="{{ author.url }}">
+          <h2>{{ author.name }}</h2>
+          <h3>{{ author.position }}</h3>
+          <p>{{ author.content | markdownify }}</p>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

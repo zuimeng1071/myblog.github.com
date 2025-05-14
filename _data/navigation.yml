@@ -1,0 +1,12 @@
+- name: 首页
+  link: /
+- name: 关于
+  link: /about.html
+- name: 联系方式
+  link: /contact.html
+- name: 最新资讯
+  link: /blog.html
+- name: 作者信息
+  link: /staff.html
+  
+  
